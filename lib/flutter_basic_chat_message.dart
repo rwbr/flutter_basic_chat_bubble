@@ -6,10 +6,8 @@
 /// DateTime [timeStamp] is the date/time of the message was sent
 class BasicChatMessage {
   String peerUserName;
-  String ownUserName;
   String messageText;
   String timeStamp;
 
-  BasicChatMessage(
-      {this.peerUserName, this.ownUserName, this.messageText, this.timeStamp});
+  BasicChatMessage({this.peerUserName, this.messageText, this.timeStamp});
 }

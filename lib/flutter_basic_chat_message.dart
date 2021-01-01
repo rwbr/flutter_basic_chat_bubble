@@ -8,8 +8,8 @@ class BasicChatMessage {
   String peerUserName;
   String ownUserName;
   String messageText;
-  DateTime timeStamp;
+  String timeStamp;
 
   BasicChatMessage(
-      this.peerUserName, this.ownUserName, this.messageText, this.timeStamp);
+      {this.peerUserName, this.ownUserName, this.messageText, this.timeStamp});
 }

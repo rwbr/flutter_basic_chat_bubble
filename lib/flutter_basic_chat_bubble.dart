@@ -12,7 +12,6 @@ class BasicChatBubble extends StatelessWidget {
   final bool isMe;
   final Color backgroundColor;
   final Color textColor;
-  final Color buttonColor;
   final Widget buttonWidget;
   final String buttonText;
 
@@ -21,7 +20,6 @@ class BasicChatBubble extends StatelessWidget {
       this.isMe,
       this.backgroundColor,
       this.textColor,
-      this.buttonColor,
       this.buttonWidget,
       this.buttonText});
 

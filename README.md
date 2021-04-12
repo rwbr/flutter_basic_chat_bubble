@@ -12,7 +12,7 @@ The puropose of this package is it to show customizable chat bubbles. You can cu
 
 ```
 dependencies:
-  flutter_basic_chat_bubble: ^0.0.1
+  flutter_basic_chat_bubble: ^0.2.0+2
 ```
 
 ### Install

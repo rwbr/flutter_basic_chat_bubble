@@ -47,7 +47,8 @@ class BasicChatBubbleDemo extends StatelessWidget {
               message: messages[index],
               isMe: index % 2 ==
                   0, // Every second bubble has the isMe flag set to true
-              backgroundColor: index % 2 == 0 ? Colors.green[400] : Colors.blue,
+              backgroundColor:
+                  (index % 2 == 0 ? Colors.green[400] : Colors.blue)!,
               textColor: Colors.white,
               buttonWidget: index == messages.length - 1
                   ? InkWell(

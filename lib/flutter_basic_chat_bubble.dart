@@ -8,18 +8,18 @@ export './flutter_basic_chat_message.dart';
 const int kTabletBreakpoint = 600;
 
 class BasicChatBubble extends StatelessWidget {
-  final BasicChatMessage message;
+  final BasicChatMessage? message;
   final bool isMe;
   final Color backgroundColor;
   final Color textColor;
-  final Widget buttonWidget;
-  final String buttonText;
+  final Widget? buttonWidget;
+  final String? buttonText;
 
   BasicChatBubble(
       {this.message,
-      this.isMe,
-      this.backgroundColor,
-      this.textColor,
+      this.isMe = false,
+      this.backgroundColor = Colors.blue,
+      this.textColor = Colors.white,
       this.buttonWidget,
       this.buttonText});
 
@@ -52,14 +52,14 @@ class BasicChatBubble extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          message.peerUserName ?? '',
+                          message?.peerUserName ?? '',
                           style: TextStyle(
                               color: textColor,
                               fontSize: 14.0,
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          message.timeStamp ?? '',
+                          message?.timeStamp ?? '',
                           style: TextStyle(
                               color: textColor,
                               fontSize: 14.0,
@@ -87,7 +87,7 @@ class BasicChatBubble extends StatelessWidget {
                               ),
                             ])
                       : Text(
-                          message.messageText ?? '',
+                          message?.messageText ?? '',
                           style: TextStyle(
                               color: textColor,
                               fontSize: 14.0,

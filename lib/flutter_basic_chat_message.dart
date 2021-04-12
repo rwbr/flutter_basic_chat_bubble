@@ -5,9 +5,9 @@
 /// String [messageText] contains the text of the message
 /// DateTime [timeStamp] is the date/time of the message was sent
 class BasicChatMessage {
-  String peerUserName;
-  String messageText;
-  String timeStamp;
+  String? peerUserName;
+  String? messageText;
+  String? timeStamp;
 
   BasicChatMessage({this.peerUserName, this.messageText, this.timeStamp});
 }

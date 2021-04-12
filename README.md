@@ -1,5 +1,7 @@
 # flutter_basic_chat_bubble
 
+![Repo Card](https://github.com/rwbr/flutter_basic_chat_bubble/blob/main/img/github-repo-card.png)
+
 The puropose of this package is it to show customizable chat bubbles. You can customize the bubbles in certain ways. The bubbles can just display text messages. At the moment other data types are not possible. 
 
 ![Screenhot](https://github.com/rwbr/flutter_basic_chat_bubble/blob/main/img/demo_screen.png)

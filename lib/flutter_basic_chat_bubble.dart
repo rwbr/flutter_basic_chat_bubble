@@ -28,23 +28,19 @@ class BasicChatBubble extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(10.0),
       child: Row(
-        mainAxisAlignment:
-            isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           Stack(children: [
             // Rechteck mit abgerundeten Ecken
             Container(
-              width: isTablet(context)
-                  ? MediaQuery.of(context).size.width * 0.4
-                  : 300.0,
+              width: isTablet(context) ? MediaQuery.of(context).size.width * 0.4 : 300.0,
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
               decoration: BoxDecoration(
                 color: backgroundColor,
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
               child: Column(
-                crossAxisAlignment:
-                    isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                 children: [
                   Container(
                     margin: EdgeInsets.only(bottom: 10.0, right: 10.0),
@@ -53,17 +49,13 @@ class BasicChatBubble extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           message?.peerUserName ?? '',
-                          style: TextStyle(
-                              color: textColor,
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold),
+                          style: TextStyle(color: textColor, fontSize: 14.0, fontWeight: FontWeight.bold),
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
                         ),
                         Text(
                           message?.timeStamp ?? '',
-                          style: TextStyle(
-                              color: textColor,
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.normal),
+                          style: TextStyle(color: textColor, fontSize: 14.0, fontWeight: FontWeight.normal),
                           textAlign: TextAlign.end,
                         ),
                       ],
@@ -80,19 +72,13 @@ class BasicChatBubble extends StatelessWidget {
                               ),
                               Text(
                                 buttonText ?? '',
-                                style: TextStyle(
-                                    color: textColor,
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold),
+                                style: TextStyle(color: textColor, fontSize: 14.0, fontWeight: FontWeight.bold),
                               ),
                             ])
-                      : Text(
-                          message?.messageText ?? '',
-                          style: TextStyle(
-                              color: textColor,
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.normal),
-                        )
+                      : Text(message?.messageText ?? '',
+                          style: TextStyle(color: textColor, fontSize: 14.0, fontWeight: FontWeight.normal),
+                          overflow: TextOverflow.visible,
+                          softWrap: true)
                 ],
               ),
             ),

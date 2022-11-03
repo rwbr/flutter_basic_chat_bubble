@@ -58,6 +58,8 @@ class BasicChatBubble extends StatelessWidget {
                         Text(
                           message?.timeStamp ?? '',
                           style: TextStyle(color: textColor, fontSize: 14.0, fontWeight: FontWeight.normal),
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
                           textAlign: TextAlign.end,
                         ),
                       ],

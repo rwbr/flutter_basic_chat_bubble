@@ -47,11 +47,13 @@ class BasicChatBubble extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text(
-                          message?.peerUserName ?? '',
-                          style: TextStyle(color: textColor, fontSize: 14.0, fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.fade,
-                          softWrap: false,
+                        Flexible(
+                          child: Text(
+                            message?.peerUserName ?? '',
+                            style: TextStyle(color: textColor, fontSize: 14.0, fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.fade,
+                            softWrap: false,
+                          ),
                         ),
                         Text(
                           message?.timeStamp ?? '',

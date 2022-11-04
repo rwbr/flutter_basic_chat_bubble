@@ -74,10 +74,10 @@ class BasicChatBubble extends StatelessWidget {
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                               ),
-                              Text(
-                                buttonText ?? '',
-                                style: TextStyle(color: textColor, fontSize: 14.0, fontWeight: FontWeight.bold),
-                              ),
+                              Text(buttonText ?? '',
+                                  style: TextStyle(color: textColor, fontSize: 14.0, fontWeight: FontWeight.bold),
+                                  overflow: TextOverflow.visible,
+                                  softWrap: true),
                             ])
                       : Text(message?.messageText ?? '',
                           style: TextStyle(color: textColor, fontSize: 14.0, fontWeight: FontWeight.normal),

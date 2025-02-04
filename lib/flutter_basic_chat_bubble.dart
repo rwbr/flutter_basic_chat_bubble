@@ -14,6 +14,9 @@ class BasicChatBubble extends StatelessWidget {
   final Color textColor;
   final Widget? buttonWidget;
   final String? buttonText;
+  final bool showTriangle;
+  final bool showDateAtTop;
+  final EdgeInsets bubblePadding;
 
   BasicChatBubble(
       {this.message,
@@ -21,26 +24,33 @@ class BasicChatBubble extends StatelessWidget {
       this.backgroundColor = Colors.blue,
       this.textColor = Colors.white,
       this.buttonWidget,
-      this.buttonText});
+      this.buttonText,
+      this.showTriangle = true,
+      this.showDateAtTop = true,
+      this.bubblePadding = const EdgeInsets.all(10.0)});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10.0),
+      padding: bubblePadding,
       child: Row(
-        mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment:
+            isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           Stack(children: [
             // Rechteck mit abgerundeten Ecken
             Container(
-              width: isTablet(context) ? MediaQuery.of(context).size.width * 0.4 : 300.0,
+              width: isTablet(context)
+                  ? MediaQuery.of(context).size.width * 0.4
+                  : 300.0,
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
               decoration: BoxDecoration(
                 color: backgroundColor,
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
               child: Column(
-                crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                crossAxisAlignment:
+                    isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                 children: [
                   Container(
                     margin: EdgeInsets.only(bottom: 10.0, right: 10.0),
@@ -50,18 +60,26 @@ class BasicChatBubble extends StatelessWidget {
                         Flexible(
                           child: Text(
                             message?.peerUserName ?? '',
-                            style: TextStyle(color: textColor, fontSize: 14.0, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                color: textColor,
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold),
                             overflow: TextOverflow.fade,
                             softWrap: false,
                           ),
                         ),
-                        Text(
-                          message?.timeStamp ?? '',
-                          style: TextStyle(color: textColor, fontSize: 14.0, fontWeight: FontWeight.normal),
-                          overflow: TextOverflow.fade,
-                          softWrap: false,
-                          textAlign: TextAlign.end,
-                        ),
+                        showDateAtTop
+                            ? Text(
+                                message?.timeStamp ?? '',
+                                style: TextStyle(
+                                    color: textColor,
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.normal),
+                                overflow: TextOverflow.fade,
+                                softWrap: false,
+                                textAlign: TextAlign.end,
+                              )
+                            : Container(),
                       ],
                     ),
                   ),
@@ -77,14 +95,35 @@ class BasicChatBubble extends StatelessWidget {
                               Flexible(
                                 child: Text(
                                   buttonText ?? '',
-                                  style: TextStyle(color: textColor, fontSize: 14.0, fontWeight: FontWeight.normal),
+                                  style: TextStyle(
+                                      color: textColor,
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.normal),
                                 ),
                               ),
                             ])
                       : Text(message?.messageText ?? '',
-                          style: TextStyle(color: textColor, fontSize: 14.0, fontWeight: FontWeight.normal),
+                          style: TextStyle(
+                              color: textColor,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.normal),
                           overflow: TextOverflow.visible,
-                          softWrap: true)
+                          softWrap: true),
+                  this.showDateAtTop
+                      ? Container()
+                      : Align(
+                          alignment: Alignment.bottomRight,
+                          child: Text(
+                            message?.timeStamp ?? '',
+                            style: TextStyle(
+                                color: textColor,
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.normal),
+                            overflow: TextOverflow.fade,
+                            softWrap: false,
+                            textAlign: TextAlign.end,
+                          ),
+                        ),
                 ],
               ),
             ),
@@ -94,15 +133,19 @@ class BasicChatBubble extends StatelessWidget {
                 ? Positioned(
                     top: 0,
                     right: 0,
-                    child: CustomPaint(
-                      painter: ChatBubbleTriangle(isMe, backgroundColor),
-                    ))
+                    child: showTriangle
+                        ? CustomPaint(
+                            painter: ChatBubbleTriangle(isMe, backgroundColor),
+                          )
+                        : Container())
                 : Positioned(
                     top: 0,
                     left: 0,
-                    child: CustomPaint(
-                      painter: ChatBubbleTriangle(isMe, backgroundColor),
-                    ))
+                    child: showTriangle
+                        ? CustomPaint(
+                            painter: ChatBubbleTriangle(isMe, backgroundColor),
+                          )
+                        : Container())
           ]),
         ],
       ),

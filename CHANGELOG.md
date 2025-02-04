@@ -1,3 +1,7 @@
+## [0.2.3] - 2025-02-04
+- PR #5: More customizations for Chat Bubbles
+
+
 ## [0.2.2+3] - Make text resizable
 
 ## [0.2.0+2] - Migrated package to null safety

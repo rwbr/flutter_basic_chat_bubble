@@ -1,11 +1,10 @@
 name: flutter_basic_chat_bubble
 description: The puropose of this package is it to show customizable chat bubbles
-version: 0.2.2+3
+version: 0.2.3
 homepage: https://github.com/rwbr/flutter_basic_chat_bubble
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
-  flutter: ">=1.17.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -14,5 +13,3 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-flutter: null

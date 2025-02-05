@@ -1,3 +1,6 @@
+## (0.2.4) - 2025-02-05
+- PR #6: Paddings adjusted
+
 ## [0.2.3] - 2025-02-04
 - PR #5: More customizations for Chat Bubbles
 

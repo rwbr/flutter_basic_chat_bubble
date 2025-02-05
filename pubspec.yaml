@@ -1,6 +1,6 @@
 name: flutter_basic_chat_bubble
 description: The puropose of this package is it to show customizable chat bubbles
-version: 0.2.3
+version: 0.2.4
 homepage: https://github.com/rwbr/flutter_basic_chat_bubble
 
 environment:

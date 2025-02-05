@@ -31,6 +31,9 @@ class BasicChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool hasName = message?.peerUserName != null && message?.peerUserName != '';
+    bool hasDate = message?.timeStamp != null && message?.timeStamp != '';
+
     return Container(
       padding: bubblePadding,
       child: Row(
@@ -43,7 +46,7 @@ class BasicChatBubble extends StatelessWidget {
               width: isTablet(context)
                   ? MediaQuery.of(context).size.width * 0.4
                   : 300.0,
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
               decoration: BoxDecoration(
                 color: backgroundColor,
                 borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -52,64 +55,81 @@ class BasicChatBubble extends StatelessWidget {
                 crossAxisAlignment:
                     isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    margin: EdgeInsets.only(bottom: 10.0, right: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Flexible(
-                          child: Text(
-                            message?.peerUserName ?? '',
-                            style: TextStyle(
-                                color: textColor,
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.bold),
-                            overflow: TextOverflow.fade,
-                            softWrap: false,
-                          ),
-                        ),
-                        showDateAtTop
-                            ? Text(
-                                message?.timeStamp ?? '',
-                                style: TextStyle(
-                                    color: textColor,
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.normal),
-                                overflow: TextOverflow.fade,
-                                softWrap: false,
-                                textAlign: TextAlign.end,
-                              )
-                            : Container(),
-                      ],
-                    ),
-                  ),
-                  this.buttonWidget != null
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                              Container(child: this.buttonWidget),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                              ),
+                  hasName || (showDateAtTop && hasDate)
+                      ? Container(
+                          margin: EdgeInsets.only(bottom: 10.0, right: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
                               Flexible(
                                 child: Text(
-                                  buttonText ?? '',
+                                  message?.peerUserName ?? '',
                                   style: TextStyle(
                                       color: textColor,
                                       fontSize: 14.0,
-                                      fontWeight: FontWeight.normal),
+                                      fontWeight: FontWeight.bold),
+                                  overflow: TextOverflow.fade,
+                                  softWrap: false,
                                 ),
                               ),
-                            ])
-                      : Text(message?.messageText ?? '',
-                          style: TextStyle(
-                              color: textColor,
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.normal),
-                          overflow: TextOverflow.visible,
-                          softWrap: true),
-                  this.showDateAtTop
+                              showDateAtTop
+                                  ? Text(
+                                      message?.timeStamp ?? '',
+                                      style: TextStyle(
+                                          color: textColor,
+                                          fontSize: 14.0,
+                                          fontWeight: FontWeight.normal),
+                                      overflow: TextOverflow.fade,
+                                      softWrap: false,
+                                      textAlign: TextAlign.end,
+                                    )
+                                  : Container(),
+                            ],
+                          ),
+                        )
+                      : Container(),
+                  this.buttonWidget != null
+                      ? Padding(
+                          padding: EdgeInsets.only(
+                              top: hasName || (showDateAtTop && hasDate)
+                                  ? 0
+                                  : 10,
+                              bottom: !showDateAtTop && hasDate ? 0 : 10),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(child: this.buttonWidget),
+                                Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 8.0),
+                                ),
+                                Flexible(
+                                  child: Text(
+                                    buttonText ?? '',
+                                    style: TextStyle(
+                                        color: textColor,
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.normal),
+                                  ),
+                                ),
+                              ]),
+                        )
+                      : Padding(
+                          padding: EdgeInsets.only(
+                              top: hasName || (showDateAtTop && hasDate)
+                                  ? 0
+                                  : 10,
+                              bottom: !showDateAtTop && hasDate ? 0 : 10),
+                          child: Text(message?.messageText ?? '',
+                              style: TextStyle(
+                                  color: textColor,
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.normal),
+                              overflow: TextOverflow.visible,
+                              softWrap: true),
+                        ),
+                  this.showDateAtTop || !hasDate
                       ? Container()
                       : Align(
                           alignment: Alignment.bottomRight,
